@@ -32,5 +32,13 @@
 
 ---
 
-##  Cấu trúc thư mục chính
+##  Hướng dẫn cài đặt & chạy
+
+### Môi trường cần có
+- .NET SDK 
+- Visual Studio hoặc VS Code (có plugin C#)
+- SQL Server 
+
+
+
 
