@@ -1,0 +1,20 @@
+﻿@page
+@model DatabaseCheckModel
+@{
+    ViewData["Title"] = "Database Connection Check";
+}
+
+<h2>Database Connection Check</h2>
+
+@if (Model.IsDatabaseConnected)
+{
+    <div class="alert alert-success">
+        The database connection was successful!
+    </div>
+}
+else
+{
+    <div class="alert alert-danger">
+        The database connection failed: @Model.ErrorMessage
+    </div>
+}

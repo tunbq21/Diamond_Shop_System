@@ -1,0 +1,267 @@
+﻿@page
+@model CustomerView.Pages.ProductListModel
+@{
+    ViewData["Title"] = "Nhẫn Kim Cương";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <link rel="stylesheet" href="~/css/ListProduct.css" />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .custom-select {
+            appearance: none;
+            background-color: #fff;
+            border: 1px solid #ced4da;
+            border-radius: 0.25rem;
+            padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #495057;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='none' stroke='gray' stroke-linecap='round' stroke-width='1' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 0.75rem center;
+            background-size: 8px 10px;
+        }
+
+            .custom-select:focus {
+                border-color: #80bdff;
+                outline: 0;
+                box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+            .filter-group .slider {
+                width: 200px;
+                margin-top: 1rem;
+            }
+
+        #shape {
+            display: flex;
+            justify-content: space-around;
+        }
+
+            #shape button {
+                background-color: white;
+                border: 1px solid #ced4da;
+                border-radius: 50%;
+                padding: 0.5rem;
+            }
+
+                #shape button img {
+                    width: 30px;
+                    height: 30px;
+                }
+
+        .filter-label {
+            font-weight: bold;
+        }
+
+        .row *{
+            width: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="row mb-3 mt-3 justify-content-center">
+            @* Filter UI *@
+            <div class="filter-group">
+                <label for="shape" class="form-label filter-label">Shape</label>
+                <div id="shape" class="d-flex">
+                    @foreach (var shape in Model.Shapes)
+                    {
+                        <button class="btn btn-outline-secondary shape-button" data-value="@shape" style="margin-right: 0.5rem;">
+                            <img src="~/images/Picture_web/MaterialDiamond/@($"{shape}.jpg")" alt="@shape">
+                        </button>
+                    }
+                </div>
+            </div>
+            @* Other filter groups *@
+            <div class="filter-group">
+                <label for="carat" class="form-label filter-label">Carat</label>
+                <select id="carat" class="form-select custom-select">
+                    <option value="">Select Carat Range</option>
+                    <option value="0-0.7">0ct - 0.7ct</option>
+                    <option value="0.7-2">0.7ct - 2ct</option>
+                    <option value="2-4">2ct - 4ct</option>
+                    <option value="4">4ct+</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="cut" class="form-label filter-label">Cut</label>
+                <select id="cut" class="form-select custom-select">
+                    <option value="">Select Cut</option>
+                    <option value="Good">Good</option>
+                    <option value="Very Good">Very Good</option>
+                    <option value="Excellent">Excellent</option>
+                    <option value="Ideal">Ideal</option>
+                    <option value="Super Ideal">Super Ideal</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="color" class="form-label filter-label">Color</label>
+                <select id="color" class="form-select custom-select">
+                    <option value="">Select Color</option>
+                    @foreach (var color in Model.Colors)
+                    {
+                        <option value="@color">@color</option>
+                    }
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="clarity" class="form-label filter-label">Clarity</label>
+                <select id="clarity" class="form-select custom-select">
+                    <option value="">Select Clarity</option>
+                    @foreach (var clarity in Model.Clarities)
+                    {
+                        <option value="@clarity">@clarity</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <div class="row mt-3 mb-3">
+            <div class="col-md-3" style="padding-left: 2%;">
+                <select id="sort_by" class="form-select custom-select" style="width:100%;">
+                    <option value="price_asc">Price: Low to High</option>
+                    <option value="price_desc">Price: High to Low</option>
+                </select>
+            </div> 
+            <div class="col-md-3" style="padding-right: 2.5%;">
+                <select id="price_range" class="form-select custom-select" style="width:100%;">
+                    <option value="">Select Price Range</option>
+                    <option value="0-15000000">0₫–15.000.000₫</option>
+                    <option value="15000000-30000000">15.000.000₫–30.000.000₫</option>
+                    <option value="30000000-45000000">30.000.000₫–45.000.000₫</option>
+                    <option value="45000000">45.000.000₫+</option>
+                </select>
+            </div>
+            <div class="col-md-3" style="padding-right: 3.5%; padding-left: 0;">
+                <select id="type" class="form-select custom-select" style="width:100%;">
+                    <option value="">Select Type</option>
+                    <option value="Nhẫn Kim Cương Nam">Nhẫn Kim Cương Nam</option>
+                    <option value="Nhẫn Kim Cương Nữ">Nhẫn Kim Cương Nữ</option>
+                </select>
+            </div>
+            <div class="col-md-3" style="padding-left: 0; padding-right: 4.5%;">
+                <select id="material" class="form-select custom-select" style="width:100%;">
+                    <option value="">Select Material</option>
+                    <option value="Vàng Trắng 14K">Vàng Trắng 14K</option>
+                    <option value="Vàng 14K">Vàng 14K</option>
+                    <option value="Bạch Kim">Bạch Kim</option>
+                    <option value="Vàng Hồng 14K">Vàng Hồng 14K</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="product-list" class="shell-grid mt-3 mb-3 row col-md-3">
+            @foreach (var product in Model.Products)
+            {
+                <a class="link" href="/Product/@product.Id">
+                    <div class="card h-70 clickable">
+                        <img src="~/images/Picture_Product/@product.Image" alt="ring" class="card-img-top">
+                        <div class="card-body" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+                            <p class="card-text text-center">@product.ProductName @product.ProductCode</p>
+                            <h6 class="card-title text-center">
+                                @string.Format("{0:n0}", product.TotalPrice)₫
+                            </h6>
+                        </div>
+                    </div>
+                </a>
+            }
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let selectedShape = '';
+        let selectedCarat = '';
+        let selectedCut = '';
+        let selectedColor = '';
+        let selectedClarity = '';
+        let selectedSortBy = '';
+        let selectedPriceRange = '';
+        let selectedType = '';
+        let selectedMaterial = '';
+
+        const updateProductList = (products) => {
+            if (!Array.isArray(products)) {
+                console.error("Expected an array but got:", products);
+                return;
+            }
+
+            let productHtml = '';
+            products.forEach(product => {
+                productHtml += `
+                                        <a class="link col-md-3" href="/Product/${product.id}">
+                                            <div class="card h-70 clickable">
+                                                <img src="/Picture_Product/${product.image}" alt="ring" class="card-img-top">
+                                                <div class="card-body" style="padding-left: 0.5rem;padding-right: 0.5rem;">
+                                                    <p class="card-text text-center">${product.productName} ${product.productCode}</p>
+                                                    <h6 class="card-title text-center">${product.totalPrice}₫</h6>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    `;
+            });
+            $('#product-list').html(productHtml);
+        };
+
+        const filterProducts = () => {
+            const carat = $('#carat').val();
+            const cut = $('#cut').val();
+            const color = $('#color').val();
+            const clarity = $('#clarity').val();
+            const sortBy = $('#sort_by').val();
+            const priceRange = $('#price_range').val();
+            const type = $('#type').val();
+            const material = $('#material').val();
+
+            $.ajax({
+                type: 'GET',
+                url: '/Product/Filter', // Đường dẫn đến phương thức xử lý lọc
+                data: {
+                    shape: selectedShape,
+                    carat: carat,
+                    cut: cut,
+                    color: color,
+                    clarity: clarity,
+                    sort_by: sortBy,
+                    price_range: priceRange,
+                    type: type,
+                    material: material
+                },
+                success: function (data) {
+                    console.log(data); // Kiểm tra dữ liệu trả về
+                    updateProductList(data);
+                },
+                error: function (xhr, status, error) {
+                    console.error("Error while filtering products:", error);
+                }
+            });
+        };
+
+        $(".shape-button").click(function (e) {
+            e.preventDefault();
+            const value = $(this).data('value');
+            selectedShape = (selectedShape === value) ? '' : value;
+            filterProducts();
+        });
+
+        $("#carat, #cut, #color, #clarity, #sort_by, #price_range, #type, #material").change(filterProducts);
+    </script>
+</body>
+</html>

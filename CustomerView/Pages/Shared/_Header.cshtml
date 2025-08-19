@@ -1,0 +1,109 @@
+﻿@* <!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>Luxury Diamond</title>
+    <link rel="stylesheet" href="~/css/Header.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="top-header">
+            <div class="left"></div>
+            <div class="logo-center">
+                <a href="/" class="center">
+                    <img src="~/Picture_web/Diamond.jpg" alt="Luxury Diamond Logo" class="logo" />
+                    <h1>Luxury Diamond</h1>
+                </a>
+            </div>
+            <div class="cart-login">
+                <button class="cart-btn mr-3">
+                    <a href="/Cart"><i class="bx bxs-cart"> GIỎ HÀNG</i></a>
+                </button>
+                @if (Session["access_token"] != null)
+                <div class="user-info">
+                    <img src="@Session["user_avatar"] ?? Url.Content("~/Picture_web/Avatar.jpg")" alt="User Avatar"
+                        class="avatar">
+                    <span class="username">@Session["name"]</span>
+                    <i class="bx bx-chevron-down"></i>
+                    <div class="dropdown-content">
+                        <a href="/Profile">Trang cá nhân</a>
+                        <a href="/Purchase">Xem đơn hàng</a>
+                        <a href="@Url.Action("Logout", "Account")" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                            Logout
+                        </a>
+                        <form id="logout-form" action="@Url.Action("Logout", "Account")" method="POST" style="display: none;">
+                            @Html.AntiForgeryToken()
+                        </form>
+                    </div>
+                </div>
+                @else
+                <button class="login-btn"><a href="@Url.Action("Login", "Account")"><i class="bx bx-user"> ĐĂNG
+                            NHẬP</i></a></button>
+                @endif
+            </div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Trang Chủ</a></li>
+                <li><a href="/ListProduct">Nhẫn Kim Cương</a></li>
+                <li><a href="/PriceDiamond">Bảng Giá Kim Cương</a></li>
+                <li><a>Dịch Vụ <i class='bx bx-chevron-down'></i></a>
+                    <ul class="sub-menu">
+                        <li><a href="/Huong-dan-doi-tra">Chính Sách Bảo Hành, Thu Hồi & Đổi Trả</a></li>
+                        <li><a href="/Chinh-sach-bao-mat">Chính Sách Bảo Mật Thông Tin</a></li>
+                        <li><a href="/IntroduceDiamondGIA">Giới thiệu kim cương GIA</a></li>
+                    </ul>
+                </li>
+                <li><a href="/Gioi-thieu">Giới Thiệu</a></li>
+                <li><a href="/Lien-he">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+    <script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const userInfo = document.querySelector('.user-info');
+        const dropdown = document.querySelector('.dropdown-content');
+
+        userInfo.addEventListener('mouseenter', () => {
+            dropdown.style.display = 'block';
+        });
+
+        userInfo.addEventListener('mouseleave', () => {
+            dropdown.style.display = 'none';
+        });
+    });
+    </script>
+</body>
+</html>
+ *@
+<!-- Pages/Shared/_Header.cshtml -->
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Luxury Diamond</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/HomePage">Trang chủ <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/ProductList">Sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/DatabaseCheck">Dịch vụ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Liên hệ</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/Payment">Thanh toán</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>

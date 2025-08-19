@@ -1,0 +1,232 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    z-index: 1000;
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    padding-bottom: 0;
+}
+
+.logo-center {
+    padding-left: 24rem;
+    height: 110px;
+}
+
+    .logo-center img {
+        height: 50px;
+        width: auto;
+        padding-left: 8rem;
+    }
+
+    .logo-center a {
+        color: #000;
+        margin: 0 10px;
+    }
+
+        .logo-center a:hover {
+            text-decoration: none;
+            color: #000;
+        }
+
+    .logo-center h1 {
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 36px;
+    }
+
+    .logo-center h1 {
+        font-family: 'Times New Roman', cursive;
+        font-style: italic;
+        font-size: 50px;
+        margin: 0;
+    }
+
+.right {
+    width: 25%;
+    align-items: center;
+}
+
+.cart-login {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 2rem;
+}
+
+.cart-btn {
+    background: #FFA500;
+    border: none;
+    color: #fff;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+}
+
+.login-btn {
+    background-color: #FFA500;
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.search {
+    border: #000 2px solid;
+    border-radius: 10px;
+}
+
+.search-input {
+    width: 80%;
+    height: 27px;
+    border: none;
+}
+
+    .search-input:focus {
+        outline: none;
+    }
+
+.search-btn {
+    width: 45px;
+    height: 30px;
+    border: none;
+    border-radius: 15px;
+    background: #fff;
+    top: 10px;
+}
+
+    .search-btn:focus {
+        outline: none;
+    }
+
+nav {
+    background-color: #fff;
+    border-color: #000;
+    position: relative;
+    z-index: 1000;
+}
+
+    nav ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+        nav ul li {
+            display: inline;
+            position: relative;
+        }
+
+            nav ul li > a {
+                color: #000;
+                text-decoration: none;
+                padding: 15px 20px;
+                display: block;
+            }
+
+            nav ul li a:hover {
+                color: #FFA500;
+                text-decoration: none;
+            }
+
+.sub-menu {
+    position: absolute;
+    background: #fff;
+    list-style: none;
+    width: 200px;
+    display: none;
+    top: 100%;
+    left: 0;
+    z-index: 1000; /* Ensures submenu is on top */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+nav ul li:hover .sub-menu {
+    display: block;
+}
+
+.sub-menu a {
+    padding: 8px 15px;
+    border-bottom: 1px solid #646464;
+}
+
+.sub-menu li:hover a {
+    border-bottom: 1px solid #8d8c8c;
+}
+
+.sub-menu li:last-child a {
+    border: none;
+}
+
+.container-xxl {
+    position: relative;
+    z-index: 1;
+}
+
+.pos1, .pos2, .pos3, .pos5, .pos6 {
+    position: relative;
+    z-index: 1;
+}
+
+.cart-btn > a, .login-btn > a {
+    color: #000;
+}
+
+    .cart-btn > a:hover, .login-btn > a:hover {
+        color: #fff;
+    }
+
+.user-info img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.user-info {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 2000;
+    /* left: -100%; */
+    right: auto;
+}
+
+    .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            color: #FFA500;
+        }
+
+.user-info:hover .dropdown-content {
+    display: block;
+}
+
+.user-info .avatar {
+    cursor: pointer;
+}

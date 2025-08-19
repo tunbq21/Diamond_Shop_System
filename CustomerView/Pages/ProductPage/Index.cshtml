@@ -1,0 +1,96 @@
+﻿@page
+@model CustomerView.Pages.ProductPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ProductCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].NumberExDiamond)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Size)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].PriceRate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Quantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].DiamondShell)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ExtraDiamond)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].MainDiamond)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumberExDiamond)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PriceRate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiamondShell.Image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExtraDiamond.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MainDiamond.CaraWeight)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

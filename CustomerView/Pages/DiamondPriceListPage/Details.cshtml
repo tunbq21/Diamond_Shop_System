@@ -1,0 +1,55 @@
+﻿@page
+@model CustomerView.Pages.DiamondPriceListPage.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>DiamondPriceList</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Clarity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Clarity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Color)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Origin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Origin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Cut)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Cut)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.CaraWeight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.CaraWeight)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.DiamondPriceList.Id">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

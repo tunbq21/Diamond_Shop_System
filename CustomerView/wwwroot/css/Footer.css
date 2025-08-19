@@ -1,0 +1,14 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.line {
+    border-top: 1px solid #000;
+}
+
+.link-icons {
+    align-items: center;
+    padding: 10px;
+}

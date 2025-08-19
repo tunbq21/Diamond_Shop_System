@@ -1,0 +1,60 @@
+﻿@page
+@model CustomerView.Pages.DiamondPriceListPage.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>DiamondPriceList</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DiamondPriceList.Id" />
+            <div class="form-group">
+                <label asp-for="DiamondPriceList.Price" class="control-label"></label>
+                <input asp-for="DiamondPriceList.Price" class="form-control" />
+                <span asp-validation-for="DiamondPriceList.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiamondPriceList.Clarity" class="control-label"></label>
+                <input asp-for="DiamondPriceList.Clarity" class="form-control" />
+                <span asp-validation-for="DiamondPriceList.Clarity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiamondPriceList.Color" class="control-label"></label>
+                <input asp-for="DiamondPriceList.Color" class="form-control" />
+                <span asp-validation-for="DiamondPriceList.Color" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiamondPriceList.Origin" class="control-label"></label>
+                <input asp-for="DiamondPriceList.Origin" class="form-control" />
+                <span asp-validation-for="DiamondPriceList.Origin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiamondPriceList.Cut" class="control-label"></label>
+                <input asp-for="DiamondPriceList.Cut" class="form-control" />
+                <span asp-validation-for="DiamondPriceList.Cut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DiamondPriceList.CaraWeight" class="control-label"></label>
+                <input asp-for="DiamondPriceList.CaraWeight" class="form-control" />
+                <span asp-validation-for="DiamondPriceList.CaraWeight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

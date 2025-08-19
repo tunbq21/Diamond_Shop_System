@@ -1,0 +1,189 @@
+﻿@page "/product/{id}"
+@model ProductDetailModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Model.Product.ProductName</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/DetailProduct.css">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-sm-7">
+                <img src="/images/Picture_Product/@Model.Product.Image" alt="ring" style="margin-left: 6rem;">
+            </div>
+            <div class="col-sm-5 text-center" style="margin-top:4%;">
+                <h3>@Model.Product.ProductName @Model.Product.ProductCode</h3>
+                <h4>Giá: @Model.Product.TotalPrice.ToString("N0")₫</h4>
+                <h5>
+                    Chất Liệu:
+                    @{
+                        foreach (var material in Model.Materials)
+                        {
+                            if (Model.Product.DiamondShell.MaterialId == material.Id)
+                            {
+                                @material.MaterialName
+                            }
+                        }
+                    }
+                </h5>
+
+                <div class="col-sm-12 ring-size-wrapper mt-4">
+                    <h4>Kích Thước Nhẫn</h4>
+                    <form id="buy-now-form" method="get" action="/payment">
+                        <div class="d-flex align-items-center justify-content-center mb-3">
+                            <input type="number" name="ringsize" id="ringSizeInput" min="4" max="9" step="0.25" value="4" class="form-control me-2" style="width: 80px;">
+                        </div>
+                        <input type="hidden" name="id" value="@Model.Product.Id">
+                        <input type="hidden" name="name" value="@Model.Product.ProductName">
+                        <input type="hidden" name="total_price" value="@Model.Product.TotalPrice">
+                        <input type="hidden" name="image" value="/images/Picture_Product/@Model.Product.Image">
+                        <input type="hidden" name="product_code" value="@Model.Product.ProductCode">
+                        <input type="hidden" name="product_id" value="@Model.Product.Id">
+                        <input type="hidden" name="quantity" value="1">
+                        <div class="d-flex justify-content-center mt-2">
+                            <button type="button" id="buy-now-button" class="btn btn-orange">Mua ngay</button>
+                        </div>
+                    </form>
+                    <strong>
+                        <p id="delivery-date" class="text-center mt-3"></p>
+                    </strong>
+                    <div class="extend">
+                        <i class="fa-sharp fa-solid fa-dollar-sign fa-2xl"></i>
+                        <div> Đảm bảo giá cả tốt nhất</div>
+                        <i class="fa-regular fa-heart fa-2xl"></i>
+                        <div> Bảo hành trọn đời</div>
+                        <i class="fa-solid fa-rotate-left fa-2xl"></i>
+                        <div> Trả hàng trong vòng 30 ngày</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <h2 class="text-center">Thông tin chi tiết chiếc nhẫn</h2>
+            <table>
+                <tr>
+                    <th>Thuộc tính</th>
+                    <th>Giá trị</th>
+                </tr>
+                <tr>
+                    <td>Kim loại</td>
+                    <td>
+                        @{
+                            foreach (var material in Model.Materials)
+                            {
+                                if (Model.Product.DiamondShell.MaterialId == material.Id)
+                                {
+                                    @material.MaterialName
+                                }
+                            }
+                        }
+                    </td>
+                </tr>
+            </table>
+
+            <h2 class="text-center">Chi tiết kim cương đính ở trung tâm</h2>
+            <table class="diamond-details">
+                <tr>
+                    <td>Shape:</td>
+                    <td>@Model.Product.MainDiamond.Shape</td>
+                    <td>Polish:</td>
+                    <td>@Model.Product.MainDiamond.Polish</td>
+                </tr>
+                <tr>
+                    <td>Carat Weight:</td>
+                    <td>@Model.Product.MainDiamond.CaraWeight ct.</td>
+                    <td>Symmetry:</td>
+                    <td>@Model.Product.MainDiamond.Symmetry</td>
+                </tr>
+                <tr>
+                    <td>Color:</td>
+                    <td>@Model.Product.MainDiamond.Color</td>
+                    <td>Measurements:</td>
+                    <td>@Model.Product.MainDiamond.Measurements</td>
+                </tr>
+                <tr>
+                    <td>Clarity:</td>
+                    <td>@Model.Product.MainDiamond.Clarity</td>
+                    <td>Culet:</td>
+                    <td>@Model.Product.MainDiamond.Culet</td>
+                </tr>
+                <tr>
+                    <td>Cut:</td>
+                    <td>@Model.Product.MainDiamond.Cut</td>
+                    <td>Fluorescence:</td>
+                    <td>@Model.Product.MainDiamond.Fluorescence</td>
+                </tr>
+                <tr>
+                    <td>certification:</td>
+                    <td>GIA certificate </td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="loginModalLabel">Thông báo</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Vui lòng đăng nhập để mua sản phẩm.
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const deliveryDateElement = document.getElementById("delivery-date");
+                const today = new Date();
+                const deliveryDate = new Date(today);
+                deliveryDate.setDate(today.getDate() + 14);
+
+                const options = {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                };
+
+                const formattedDeliveryDate = deliveryDate.toLocaleDateString('vi-VN', options);
+                deliveryDateElement.textContent = "Ngày giao hàng dự kiến: " + formattedDeliveryDate;
+            });
+        </script>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Lấy trạng thái đăng nhập từ server-side
+                const loggedIn = '@(HttpContext.Session.GetString("UserId") != null ? "true" : "false")';
+
+                $('#buy-now-button').click(function () {
+                    // Kiểm tra trạng thái đăng nhập
+                    if (loggedIn === "false") {
+                        $('#loginModal').modal('show'); // Hiện modal thông báo
+                        return;
+                    }
+
+                    // Nếu đã đăng nhập, gửi form
+                    $('#buy-now-form').submit();
+                });
+            });
+        </script>
+
+</body>
+</html>

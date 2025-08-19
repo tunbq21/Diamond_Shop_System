@@ -1,0 +1,66 @@
+﻿@page
+@model CustomerView.Pages.DiamondPriceListPage.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.DiamondPriceList[0].Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiamondPriceList[0].Clarity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiamondPriceList[0].Color)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiamondPriceList[0].Origin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiamondPriceList[0].Cut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DiamondPriceList[0].CaraWeight)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.DiamondPriceList) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clarity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Color)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Origin)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaraWeight)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

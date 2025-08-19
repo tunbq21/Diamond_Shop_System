@@ -1,0 +1,58 @@
+﻿@page
+@model CustomerView.Pages.DiamondPriceListPage.DeleteModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>DiamondPriceList</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Price)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Price)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Clarity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Clarity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Color)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Color)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Origin)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Origin)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.Cut)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.Cut)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DiamondPriceList.CaraWeight)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DiamondPriceList.CaraWeight)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="DiamondPriceList.Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-page="./Index">Back to List</a>
+    </form>
+</div>
